@@ -6,3 +6,5 @@ _modify:
 _include:
   - ./common_patches/c0.yaml
   - ./common_patches/nvic/2_prio_bits.yaml
+  - ../peripherals/gpio/v3/common.yaml
+  - ../peripherals/gpio/v3/af0-7.yaml

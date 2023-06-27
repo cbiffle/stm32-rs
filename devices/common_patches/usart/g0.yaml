@@ -21,3 +21,12 @@
         description: "Baud rate"
         bitOffset: 0
         bitWidth: 16
+  ISR:
+    _modify:
+      NF:
+        name: NE
+
+FLASH:
+  SR:
+    MISERR:
+      name: "MISSERR"

@@ -3,6 +3,30 @@ _clear_fields: ["*"]
 RCC:
   _strip:
     - "RCC_"
+  IOPENR:
+    _modify:
+      "GPIOAEN":
+        name: "IOPAEN"
+      "GPIOBEN":
+        name: "IOPBEN"
+      "GPIOCEN":
+        name: "IOPCEN"
+      "GPIODEN":
+        name: "IOPDEN"
+      "GPIOFEN":
+        name: "IOPFEN"
+  IOPRSTR:
+    _modify:
+      "GPIOARST":
+        name: "IOPARST"
+      "GPIOBRST":
+        name: "IOPBRST"
+      "GPIOCRST":
+        name: "IOPCRST"
+      "GPIODRST":
+        name: "IOPDRST"
+      "GPIOFRST":
+        name: "IOPFRST"
 
 ADC:
   _strip:
@@ -41,18 +65,185 @@ EXTI:
 GPIO?:
   _strip:
     - "GPIO?_"
+  MODER:
+    _modify:
+      "MODE*":
+        "B_0x0":
+          name: "Output"
+    _modify:
+      "MODE0":
+        name: "MODER0"
+      "MODE1":
+        name: "MODER1"
+      "MODE2":
+        name: "MODER2"
+      "MODE3":
+        name: "MODER3"
+      "MODE4":
+        name: "MODER4"
+      "MODE5":
+        name: "MODER5"
+      "MODE6":
+        name: "MODER6"
+      "MODE7":
+        name: "MODER7"
+      "MODE8":
+        name: "MODER8"
+      "MODE9":
+        name: "MODER9"
+      "MODE10":
+        name: "MODER10"
+      "MODE11":
+        name: "MODER11"
+      "MODE12":
+        name: "MODER12"
+      "MODE13":
+        name: "MODER13"
+      "MODE14":
+        name: "MODER14"
+      "MODE15":
+        name: "MODER15"
+  PUPDR:
+    _modify:
+      "PUPD0":
+        name: "PUPDR0"
+      "PUPD1":
+        name: "PUPDR1"
+      "PUPD2":
+        name: "PUPDR2"
+      "PUPD3":
+        name: "PUPDR3"
+      "PUPD4":
+        name: "PUPDR4"
+      "PUPD5":
+        name: "PUPDR5"
+      "PUPD6":
+        name: "PUPDR6"
+      "PUPD7":
+        name: "PUPDR7"
+      "PUPD8":
+        name: "PUPDR8"
+      "PUPD9":
+        name: "PUPDR9"
+      "PUPD10":
+        name: "PUPDR10"
+      "PUPD11":
+        name: "PUPDR11"
+      "PUPD12":
+        name: "PUPDR12"
+      "PUPD13":
+        name: "PUPDR13"
+      "PUPD14":
+        name: "PUPDR14"
+      "PUPD15":
+        name: "PUPDR15"
+  OSPEEDR:
+    _modify:
+      "OSPEED0":
+        name: "OSPEEDR0"
+      "OSPEED1":
+        name: "OSPEEDR1"
+      "OSPEED2":
+        name: "OSPEEDR2"
+      "OSPEED3":
+        name: "OSPEEDR3"
+      "OSPEED4":
+        name: "OSPEEDR4"
+      "OSPEED5":
+        name: "OSPEEDR5"
+      "OSPEED6":
+        name: "OSPEEDR6"
+      "OSPEED7":
+        name: "OSPEEDR7"
+      "OSPEED8":
+        name: "OSPEEDR8"
+      "OSPEED9":
+        name: "OSPEEDR9"
+      "OSPEED10":
+        name: "OSPEEDR10"
+      "OSPEED11":
+        name: "OSPEEDR11"
+      "OSPEED12":
+        name: "OSPEEDR12"
+      "OSPEED13":
+        name: "OSPEEDR13"
+      "OSPEED14":
+        name: "OSPEEDR14"
+      "OSPEED15":
+        name: "OSPEEDR15"
+  IDR:
+    _modify:
+      "ID0":
+        name: "IDR0"
+      "ID1":
+        name: "IDR1"
+      "ID2":
+        name: "IDR2"
+      "ID3":
+        name: "IDR3"
+      "ID4":
+        name: "IDR4"
+      "ID5":
+        name: "IDR5"
+      "ID6":
+        name: "IDR6"
+      "ID7":
+        name: "IDR7"
+      "ID8":
+        name: "IDR8"
+      "ID9":
+        name: "IDR9"
+      "ID10":
+        name: "IDR10"
+      "ID11":
+        name: "IDR11"
+      "ID12":
+        name: "IDR12"
+      "ID13":
+        name: "IDR13"
+      "ID14":
+        name: "IDR14"
+      "ID15":
+        name: "IDR15"
+
 
 USART?:
   _strip:
     - "USART_"
+  _delete:
+    - USART_CR1_enabled
+    - USART_ISR_enabled
+  _modify:
+    "CR1_disabled":
+      name: "CR1"
+      alternateRegister: ""
+    "ISR_disabled":
+      name: "ISR"
+      alternateRegister: ""
 
 SPI:
   _strip:
     - "SPI_"
 
-I2C:
+_modify:
+  I2C:
+    name: "I2C1"
+
+I2C1:
   _strip:
     - "I2C_"
+  _modify:
+    _interrupts:
+      "I2C":
+        name: "I2C1"
+  ISR:
+    DIR:
+      Write: [0, "Write transfer"]
+      Read: [1, "Read transfer"]
+  OAR1:
+    OA1MODE:
+      Bit7: [0, "Own address 1 is a 7-bit address"]
+      Bit10: [1, "Own address 1 is a 10-bit address"]
 
 IWDG:
   _strip:
@@ -81,3 +272,187 @@ TIM*:
   _strip:
     - "TIM*__"
     - "TIM?*_"
+
+SYSCFG:
+  _strip:
+    - "SYSCFG_"
+
+_add:
+  FLASH:
+    description: Embedded Flash Memory
+    groupName: FLASH
+    baseAddress: 0x40022000
+    addressBlock:
+      offset: 0x000
+      size: 0x400
+      usage: registers
+    registers:
+      ACR:
+        description: FLASH access control register
+        addressOffset: 0x000
+        resetValue: 0x00040600
+        fields:
+          DBG_SWEN:
+            description: Debug software access enable
+            bitOffset: 18
+            bitWidth: 1
+          EMPTY:
+            description: Main flash memory empty
+            bitOffset: 16
+            bitWidth: 1
+          ICRST:
+            description: CPU instruction cache reset
+            bitOffset: 11
+            bitWidth: 1
+          ICEN:
+            description: CPU instruction cache enable
+            bitOffset: 9
+            bitWidth: 1
+          PRFTEN:
+            description: CPU prefetch enable
+            bitOffset: 8
+            bitWidth: 1
+          LATENCY:
+            description: Flash memory access latency
+            bitOffset: 0
+            bitWidth: 3
+      KEYR:
+        description: FLASH key register
+        addressOffset: 0x008
+        resetValue: 0x00000000
+        access: write-only
+        fields:
+          KEYR:
+            description: Access configuration unlock key
+            bitOffset: 0
+            bitWidth: 32
+      OPTKEYR:
+        description: FLASH option key register
+        addressOffset: 0x00c
+        resetValue: 0x00000000
+        access: write-only
+        fields:
+          OPTKEYR:
+            description: FLASH option bytes control access unlock key
+            bitOffset: 0
+            bitWidth: 32
+      SR:
+        description: FLASH status register
+        addressOffset: 0x010
+        resetValue: 0x00000000
+        fields:
+          CFGBSY:
+            description: Programming or erase configuration busy
+            bitOffset: 18
+            bitWidth: 1
+            access: read-only
+          BSY:
+            description: Bank 1 busy flag
+            bitOffset: 16
+            bitWidth: 1
+            access: read-only
+          OPTVERR:
+            description: Option and engineering bits loading validity error
+            bitOffset: 15
+            bitWidth: 1
+          RDERR:
+            description: PCROP read error
+            bitOffset: 14
+            bitWidth: 1
+          FASTERR:
+            description: Fast programming error
+            bitOffset: 9
+            bitWidth: 1
+          MISSERR:
+            description: Fast programming data miss error
+            bitOffset: 8
+            bitWidth: 1
+          PGSERR:
+            description: Programming sequence error flag
+            bitOffset: 7
+            bitWidth: 1
+          SIZERR:
+            description: Size error
+            bitOffset: 6
+            bitWidth: 1
+          PGAERR:
+            description: Programming alignment error
+            bitOffset: 5
+            bitWidth: 1
+          WRPERR:
+            description: Write protection error
+            bitOffset: 4
+            bitWidth: 1
+          PROGERR:
+            description: Programming error
+            bitOffset: 3
+            bitWidth: 1
+          OPERR:
+            description: Operation error
+            bitOffset: 1
+            bitWidth: 1
+          EOP:
+            description: End of operation
+            bitOffset: 0
+            bitWidth: 1
+      CR:
+        description: FLASH control register
+        addressOffset: 0x014
+        resetValue: 0xC0000000
+        fields:
+          LOCK:
+            description: CR lock
+            bitOffset: 31
+            bitWidth: 1
+          OPTLOCK:
+            description: Options lock
+            bitOffset: 30
+            bitWidth: 1
+          SEC_PROT:
+            description: Securable memory area protection enable
+            bitOffset: 28
+            bitWidth: 1
+          OBL_LAUNCH:
+            description: Option byte load launch
+            bitOffset: 27
+            bitWidth: 1
+          RDERRIE:
+            description: PCROP read error interrupt enable
+            bitOffset: 26
+            bitWidth: 1
+          ERRIE:
+            description: Error interrupt enable bit
+            bitOffset: 25
+            bitWidth: 1
+          EOPIE:
+            description: End-of-program interrupt control bit
+            bitOffset: 24
+            bitWidth: 1
+          FSTPG:
+            description: Fast programming enable
+            bitOffset: 18
+            bitWidth: 1
+          OPTSTRT:
+            description: Start modification of option bytes
+            bitOffset: 17
+            bitWidth: 1
+          STRT:
+            description: Start erase operation
+            bitOffset: 16
+            bitWidth: 1
+          PNB:
+            description: Page number selection
+            bitOffset: 3
+            bitWidth: 4
+          MER1:
+            description: Mass erase request
+            bitOffset: 2
+            bitWidth: 1
+          PER:
+            description: Page erase request
+            bitOffset: 1
+            bitWidth: 1
+          PG:
+            description: Bank 1 internal buffer control bit
+            bitOffset: 0
+            bitWidth: 1
